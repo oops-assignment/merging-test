@@ -95,7 +95,7 @@ public class login extends AppCompatActivity {
         });
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("701677771511-nnjfuto7uocvr9q8ifgu5ngqmogl40oo.apps.googleusercontent.com")
+                .requestIdToken("422716171086-np3lbfdhj8qcstbsdl5lch37efdovs7e.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 

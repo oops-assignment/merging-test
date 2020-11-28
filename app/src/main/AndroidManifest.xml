@@ -55,6 +55,21 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".logout"/>
 
+
+        <activity android:name=".ListN"
+            android:label="Notes"/>
+
+
+        <activity android:name=".notes"
+            android:label="Notes"
+            android:parentActivityName=".ListN">
+        </activity>
+        <activity android:name=".EditN"
+            android:label="Notes"
+            android:parentActivityName=".ListN">
+
+        </activity>
+
     </application>
 
 

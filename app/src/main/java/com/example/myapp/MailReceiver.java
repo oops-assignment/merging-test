@@ -51,7 +51,7 @@ public class MailReceiver extends BroadcastReceiver {
         protected void onPostExecute(Void result) {
 
             super.onPostExecute(result);
-            pDialog.cancel();
+            //pDialog.cancel();
             //  Toast.makeText(MainActivity.this, "mail send", Toast.LENGTH_SHORT).show();
 
         }

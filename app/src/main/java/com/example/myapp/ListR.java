@@ -3,6 +3,7 @@ package com.example.myapp;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,11 +34,18 @@ public class ListR extends AppCompatActivity {
     RecyclerView recyclerView;
     LinearLayoutManager mLayout;
     String title;
+    String USERID;
+    FirebaseAuth fAuth;
     Reminder_data reminder_data=new Reminder_data();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.listlay);
+        fAuth = FirebaseAuth.getInstance();
+
+
+        String  USERID = fAuth.getCurrentUser().getEmail();
+
 
         floatingActionButton1=findViewById(R.id.floatingActionButton3);
 
@@ -48,7 +57,7 @@ public class ListR extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         database= FirebaseDatabase.getInstance();
-        ref=database.getReference("users");
+        ref=database.getReference(USERID.substring(0,2)).child("remainder");
 
         floatingActionButton1.setOnClickListener(new View.OnClickListener() {
             @Override

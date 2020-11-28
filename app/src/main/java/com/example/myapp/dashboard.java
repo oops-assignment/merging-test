@@ -5,14 +5,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class dashboard extends AppCompatActivity {
     private RelativeLayout inv,doc,profile,share,rem,todo;
     private Intent intent;
-    FirebaseAuth fAuth;
+    private FirebaseAuth fAuth;
+    private FirebaseFirestore firebaseFirestore;
+    String userID;
+    String USERID;
 
 
 
@@ -52,7 +61,7 @@ public class dashboard extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                startActivity(intent = new Intent(com.example.myapp.dashboard.this, com.example.myapp.Profile.class));
+                startActivity(intent = new Intent(com.example.myapp.dashboard.this, com.example.myapp.ListN.class));
 
             }
         });
@@ -76,6 +85,19 @@ public class dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
         fAuth = FirebaseAuth.getInstance();
+        firebaseFirestore= FirebaseFirestore.getInstance();
+        userID = fAuth.getCurrentUser().getUid();
+        DocumentReference documentReference = firebaseFirestore.collection("Users").document(userID);
+        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+
+
+                //Usermailid = value.getString("email");
+                USERID = value.getString("userName");
+
+            }
+        });
 
         setUI();
 
