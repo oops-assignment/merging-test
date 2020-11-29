@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,21 +58,32 @@ public class Profile extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
+                //FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(Profile.this, com.example.myapp.login.class));
+                Toast.makeText(com.example.myapp.Profile.this, "Logged ot successfully", Toast.LENGTH_SHORT).show();
             }
         });
 
-        DocumentReference documentReference = firebaseFirestore.collection("Users").document(userID);
-        documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                email.setText(value.getString("email"));
-                name.setText(value.getString("userName"));
-                phno.setText(value.getString("PhoneNumber"));
-                prof.setText(value.getString("Profession"));
-            }
-        });
+            DocumentReference documentReference = firebaseFirestore.collection("Users").document(userID);
+            documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                    if (value.getString("userName") != null){
+                        email.setText(value.getString("email"));
+                        name.setText(value.getString("userName"));
+                        phno.setText(value.getString("PhoneNumber"));
+                        prof.setText(value.getString("Profession"));
+
+
+                    }
+
+                    }
+
+
+            });
+
+
+
 
         share.setOnClickListener(new View.OnClickListener() {
             @Override

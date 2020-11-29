@@ -23,6 +23,7 @@
         android:layout_height="wrap_content">
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/rback"
+            app:fabSize="mini"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_west_24"/>
@@ -34,7 +35,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="60sp"
             android:layout_marginTop="10sp"
-            android:text="Remainder"
+            android:text="Reminder"
             android:textColor="#020202"
             android:textSize="25sp" />
     </androidx.cardview.widget.CardView>

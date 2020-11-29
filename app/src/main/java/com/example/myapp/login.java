@@ -56,7 +56,7 @@ public class login extends AppCompatActivity {
         fAuth       = FirebaseAuth.getInstance();
 
         if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), com.example.myapp.dashboard.class));
+            startActivity(new Intent(getApplicationContext(), com.example.myapp.logout.class));
             finish();
         }
 
@@ -95,7 +95,7 @@ public class login extends AppCompatActivity {
         });
 
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("422716171086-np3lbfdhj8qcstbsdl5lch37efdovs7e.apps.googleusercontent.com")
+                .requestIdToken("513069993396-cpc48jk6k2cf2t1uum4h039aosb47r3o.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 

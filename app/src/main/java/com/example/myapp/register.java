@@ -143,7 +143,7 @@ public class register extends AppCompatActivity {
                                    Toast.makeText(com.example.myapp.register.this, "User data is saved successfully", Toast.LENGTH_SHORT).show();
                                }
                            });
-                           startActivity(new Intent(getApplicationContext(), com.example.myapp.logout.class));
+                           startActivity(new Intent(getApplicationContext(), com.example.myapp.login.class));
                            finish();
                        } else{
                            Toast.makeText(com.example.myapp.register.this, "Error occured" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

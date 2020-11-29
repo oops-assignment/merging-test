@@ -64,7 +64,7 @@ public class EditN extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(com.example.myapp.EditN.this,"Note Updated",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(com.example.myapp.EditN.this,"Note Deleted",Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(),ListN.class));
 
                     }

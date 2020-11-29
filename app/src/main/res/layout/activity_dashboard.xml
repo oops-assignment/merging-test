@@ -30,7 +30,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="24dp"
-            android:text="Dashbord"
+            android:text="Dashboard"
             android:textSize="30sp"
 
             app:layout_constraintEnd_toStartOf="@+id/imageView"
@@ -101,7 +101,7 @@
                         android:layout_below="@id/imageView3"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:text="Remainders"
+                        android:text="Reminders"
                         android:textSize="24sp" />
 
                     <ImageView

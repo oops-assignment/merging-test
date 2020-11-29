@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/qwerty"
     tools:context=".Profile">
     <LinearLayout
         android:orientation="vertical"
@@ -17,6 +18,7 @@
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:id="@+id/pback"
+                app:fabSize="mini"
                 android:layout_marginTop="5dp"
                 android:src="@drawable/ic_baseline_west_24"
                 android:layout_height="wrap_content"/>
@@ -24,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Profile"
-                android:textSize="50dp"/>
+                android:textSize="40dp"/>
 
         </LinearLayout>
 
@@ -33,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="311dp"
             android:padding="10dp"
-            android:background="@color/purple_200"
+            android:background="#A903A9F4"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_marginTop="30dp"
@@ -42,6 +44,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:text="Name :"
                     android:textSize="40dp" />
                 <TextView
@@ -58,13 +61,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:text="Email :"
                     android:textSize="40dp" />
                 <TextView
                     android:id="@+id/pemail"
                     android:hint="email"
                     android:textSize="30dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>
@@ -74,13 +78,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:text="Ph.no :"
                     android:textSize="40dp" />
                 <TextView
                     android:id="@+id/pno"
                     android:hint="phno"
                     android:textSize="30dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>
@@ -90,13 +95,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/black"
                     android:text="Profession :"
                     android:textSize="40dp" />
                 <TextView
                     android:id="@+id/ppr"
                     android:hint="prof"
                     android:textSize="30dp"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>

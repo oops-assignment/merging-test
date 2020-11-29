@@ -7,19 +7,23 @@
     android:layout_height="match_parent"
     tools:context=".ListN">
     <LinearLayout
-        android:background="@color/purple_200"
+        android:background="@color/teal_200"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/nback"
+            app:fabSize="mini"
+            android:backgroundTint="@color/purple_700"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_west_24"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="Notes"
-            android:textSize="50dp"/>
+            android:textSize="40dp"/>
 
     </LinearLayout>
 
@@ -41,8 +45,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:clickable="true"
-        android:layout_marginTop="500dp"
-        android:layout_marginLeft="320dp"
+        android:layout_marginTop="550dp"
+        android:layout_marginLeft="330dp"
         android:src="@drawable/ic_baseline_add_circle_24"
         android:tint="#00FFEB3B"
         app:backgroundTint="#CE065309"
