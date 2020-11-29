@@ -25,7 +25,7 @@
 
         <TextView
             android:id="@+id/Title_itemtv"
-            android:layout_width="350dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_marginLeft="0dp"
@@ -35,7 +35,7 @@
 
         <TextView
             android:id="@+id/Descri_itemtv"
-            android:layout_width="303dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:layout_marginLeft="0dp"
@@ -45,7 +45,7 @@
 
         <TextView
             android:id="@+id/date_itemtv"
-            android:layout_width="108dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="0dp"
             android:layout_marginTop="1dp"
@@ -55,7 +55,7 @@
 
         <TextView
             android:id="@+id/Time_itemtv"
-            android:layout_width="70dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="109dp"
             android:layout_marginTop="-24.25dp"
@@ -66,7 +66,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:layout_width="72dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="177dp"
             android:layout_marginTop="-24.25dp"
@@ -75,10 +75,10 @@
 
         <TextView
             android:id="@+id/repeat_info"
-            android:layout_width="43dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="245dp"
-            android:layout_marginTop="-24.25dp"
+            android:layout_marginTop="-23dp"
             android:text=""
             android:textSize="16sp" />
 

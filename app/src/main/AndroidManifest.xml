@@ -53,7 +53,7 @@
         <activity
             android:name=".register"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".logout"/>
+
 
 
         <activity android:name=".ListN"

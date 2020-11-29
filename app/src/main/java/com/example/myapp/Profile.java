@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -22,10 +23,12 @@ public class Profile extends AppCompatActivity {
     private LinearLayout logout,share;
     private Intent Intent;
     private TextView name,email,phno,prof;
+    FloatingActionButton back;
 
     private FirebaseAuth fAuth;
     private FirebaseFirestore firebaseFirestore;
     String userID;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +41,26 @@ public class Profile extends AppCompatActivity {
         prof=findViewById(R.id.ppr);
         logout=findViewById(R.id.btnlogout);
         share=findViewById(R.id.pshare);
+        back=findViewById(R.id.pback);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent = new Intent(com.example.myapp.Profile.this, com.example.myapp.dashboard.class));
+
+            }
+        });
 
 
         fAuth = FirebaseAuth.getInstance();
         firebaseFirestore=FirebaseFirestore.getInstance();
         userID = fAuth.getCurrentUser().getUid();
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(Profile.this, com.example.myapp.login.class));
+            }
+        });
 
         DocumentReference documentReference = firebaseFirestore.collection("Users").document(userID);
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
@@ -54,12 +72,7 @@ public class Profile extends AppCompatActivity {
                 prof.setText(value.getString("Profession"));
             }
         });
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Profile.this, com.example.myapp.logout.class));
-            }
-        });
+
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

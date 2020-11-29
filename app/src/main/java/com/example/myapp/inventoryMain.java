@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +25,7 @@ public class inventoryMain extends AppCompatActivity implements com.example.myap
 
     private ImageView image;
     private RecyclerView recyclerView;
-    private ImageButton btnadd,btncatdel;
+    private ImageButton btnadd,btnback;
 
 
 
@@ -41,19 +42,23 @@ public class inventoryMain extends AppCompatActivity implements com.example.myap
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private dashAdapter dashAdapter;
+    private FirebaseAuth fAuth;
+    String email;
+
 
 
     private void setUI(){
         btnadd = findViewById(R.id.floatingadd);
         image = findViewById(R.id.image);
-        //btncatdel = findViewById(R.id.btndelcat);
+        btnback=findViewById(R.id.iback);
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(com.example.myapp.inventoryMain.this, dashboard.class);
+                startActivity(intent);
+            }
+        });
 
-//        btncatdel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
 
         btnadd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,18 +168,14 @@ public class inventoryMain extends AppCompatActivity implements com.example.myap
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventorymain);
-        databaseReference=firebaseDatabase.getInstance().getReference().child("User");
+        fAuth = FirebaseAuth.getInstance();
+
+
+        email = fAuth.getCurrentUser().getEmail();
+        databaseReference=firebaseDatabase.getInstance().getReference().child(email.substring(0,2)).child("inventory");
 
         setUI();
-        Log.d("bool flag before",String.valueOf(flag));
-        int i = 1;
 
-        if (i == 1){
-            defaultvalues();
-
-            Log.d("bool flag in",String.valueOf(flag));
-        }
-        Log.d("bool flag after ",String.valueOf(flag));
 
 
         firebaseinfo();

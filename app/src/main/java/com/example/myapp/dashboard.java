@@ -9,20 +9,29 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
+import java.util.Locale;
+
 public class dashboard extends AppCompatActivity {
     private RelativeLayout inv,doc,profile,share,rem,todo;
     private Intent intent;
-    private FirebaseAuth fAuth;
+    //private FirebaseAuth fAuth;
     private FirebaseFirestore firebaseFirestore;
     String userID;
     String USERID;
-
+    private com.example.myapp.category cat1;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private dashAdapter dashAdapter;
+    private FirebaseAuth fAuth;
+    String email;
 
 
     private void setUI(){
@@ -45,7 +54,7 @@ public class dashboard extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                startActivity(intent = new Intent(com.example.myapp.dashboard.this,remainder.class));
+                startActivity(intent = new Intent(com.example.myapp.dashboard.this,ListR.class));
 
             }
         });
@@ -76,6 +85,32 @@ public class dashboard extends AppCompatActivity {
         });
 
     }
+    private void defaultvalues(){
+//        categories.add("Groceries");
+//        categories.add("Books");
+//        categories.add("Misc");
+//        images.add("https://i.imgur.com/XhTjOMu.png");
+//        images.add("https://i.imgur.com/U9tdGo6_d.webp?maxwidth=760&fidelity=grand");
+//        images.add("https://i.imgur.com/53QR2iB_d.webp?maxwidth=760&fidelity=grand");
+        cat1 = new com.example.myapp.category();
+        cat1.setCategory("Groceries");
+        cat1.setImage("https://i.imgur.com/XhTjOMu.png");
+        databaseReference.child("Groceries").setValue(cat1);
+        cat1 = new com.example.myapp.category();
+        cat1.setCategory("Books");
+        cat1.setImage("https://i.imgur.com/U9tdGo6_d.webp?maxwidth=760&fidelity=grand");
+        databaseReference.child("Books").setValue(cat1);
+        cat1 = new com.example.myapp.category();
+        cat1.setCategory("Furniture");
+        cat1.setImage("https://i.imgur.com/X0qnvfp.png");
+        databaseReference.child("Furniture").setValue(cat1);
+        cat1 = new com.example.myapp.category();
+        cat1.setCategory("Appliances");
+        cat1.setImage("https://i.imgur.com/UpUzKwA.png");
+        databaseReference.child("Appliances").setValue(cat1);
+        cat1 = new com.example.myapp.category();
+
+    }
 
 
 
@@ -98,6 +133,12 @@ public class dashboard extends AppCompatActivity {
 
             }
         });
+        //fAuth = FirebaseAuth.getInstance();
+
+
+        email = fAuth.getCurrentUser().getEmail();
+        databaseReference=firebaseDatabase.getInstance().getReference().child(email.substring(0,2)).child("inventory");
+        defaultvalues();
 
         setUI();
 

@@ -18,8 +18,9 @@ import com.google.firebase.database.FirebaseDatabase;
 public class notes extends AppCompatActivity {
 String ntitle,Ndes;
 EditText t1,t2;
-private FirebaseAuth fAuth;
+
 private DatabaseReference dref;
+private FirebaseAuth fAuth;
 String email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -56,7 +56,7 @@ public class login extends AppCompatActivity {
         fAuth       = FirebaseAuth.getInstance();
 
         if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), com.example.myapp.logout.class));
+            startActivity(new Intent(getApplicationContext(), com.example.myapp.dashboard.class));
             finish();
         }
 
@@ -102,7 +102,7 @@ public class login extends AppCompatActivity {
         signInClient = GoogleSignIn.getClient(this,gso);
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
         if(signInAccount != null){
-            startActivity(new Intent(this, com.example.myapp.logout.class));
+            startActivity(new Intent(this, com.example.myapp.dashboard.class));
             finish();
         }
         signIn.setOnClickListener(new View.OnClickListener() {

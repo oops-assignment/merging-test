@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +25,8 @@ public class additem extends AppCompatActivity {
     private DatabaseReference databaseReference,databaseReference1;
     private newitem itm;
     private String catname;
+    private FirebaseAuth fAuth;
+    String email;
 
     private Integer srno = new Integer(0);
 
@@ -58,7 +61,6 @@ public class additem extends AppCompatActivity {
         });
     }
     private void firebase(){
-        databaseReference = database.getInstance().getReference().child("User").child(catname).child("items");
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -86,7 +88,15 @@ public class additem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_additem);
         Intent intent = getIntent();
+
         catname = intent.getStringExtra("catname");
+
+        fAuth = FirebaseAuth.getInstance();
+
+
+        email = fAuth.getCurrentUser().getEmail();
+        databaseReference = database.getInstance().getReference().child(email.substring(0,2)).child("inventory").child(catname).child("items");
+
 
         setUI();
 

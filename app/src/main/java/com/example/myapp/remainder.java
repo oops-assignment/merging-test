@@ -95,7 +95,7 @@ public class remainder extends AppCompatActivity implements TimePickerDialog.OnT
                     Intent inte = new Intent(com.example.myapp.remainder.this, com.example.myapp.ListR.class);
                     startActivity(inte);
                     String id = myRef.push().getKey();
-                    myRef.child(Usermailid.substring(0,2)).child("remaider").setValue(data);
+                    myRef.child(Usermailid.substring(0,2)).child("remainder").child(id).setValue(data);
                     if(Repeat.equalsIgnoreCase("Off")) {
                         startAlarm(title, cmnt);
                     }

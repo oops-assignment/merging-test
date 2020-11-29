@@ -28,6 +28,8 @@ public class addCategory extends AppCompatActivity {
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
+    private FirebaseAuth fAuth;
+    String email;
 
 
     private void setUI(){
@@ -61,10 +63,14 @@ public class addCategory extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_category);
+        fAuth = FirebaseAuth.getInstance();
+
+
+        email = fAuth.getCurrentUser().getEmail();
 
         Intent intent=getIntent();
         catname1=intent.getStringExtra("catname");
-        databaseReference=firebaseDatabase.getInstance().getReference().child("User");
+        databaseReference=firebaseDatabase.getInstance().getReference().child(email.substring(0,2)).child("inventory");
 
 
         setUI();

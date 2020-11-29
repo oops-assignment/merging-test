@@ -5,10 +5,13 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +21,7 @@ public class to_do extends AppCompatActivity {
     com.example.myapp.DBHelper mydb;
     LinearLayout empty;
     NestedScrollView scrollView;
+    FloatingActionButton btnback;
     LinearLayout todayContainer, tomorrowContainer, otherContainer;
     com.example.myapp.NoScrollListView taskListToday, taskListTomorrow, taskListUpcoming;
     ArrayList<HashMap<String, String>> todayList = new ArrayList<HashMap<String, String>>();
@@ -39,6 +43,14 @@ public class to_do extends AppCompatActivity {
         taskListToday = findViewById(R.id.taskListToday);
         taskListTomorrow = findViewById(R.id.taskListTomorrow);
         taskListUpcoming = findViewById(R.id.taskListUpcoming);
+        btnback=findViewById(R.id.tback);
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(com.example.myapp.to_do.this, dashboard.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void openAddModifyTask(View view) {

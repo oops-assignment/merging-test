@@ -9,6 +9,7 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +26,8 @@ public class Update extends AppCompatActivity {
     private DatabaseReference databaseReference;
     com.example.myapp.newitem itm;
     private String catname;
+    private FirebaseAuth fAuth;
+    String email;
 
     private ArrayList<String> itemsname = new ArrayList<String>();
     private ArrayList<String> itemsquantity = new ArrayList<String>();
@@ -41,7 +44,7 @@ public class Update extends AppCompatActivity {
         btndel = findViewById(R.id.btndelete);
         btninfook = findViewById(R.id.btnokupdate);
 
-        databaseReference = firebaseDatabase.getInstance().getReference().child("User").child(catname).child("items");                    //databasereference  till User
+
 
         firebaseWrite();
 
@@ -87,8 +90,14 @@ public class Update extends AppCompatActivity {
         Intent intent=getIntent();
         catname = intent.getStringExtra("catname");
         childID=intent.getStringExtra("childID"); //getting id of the adapter
+        fAuth = FirebaseAuth.getInstance();
 
-            setUI();
+
+        email = fAuth.getCurrentUser().getEmail();
+        databaseReference = firebaseDatabase.getInstance().getReference().child(email.substring(0,2)).child("inventory").child(catname).child("items");                    //databasereference  till User
+
+
+        setUI();
             btndel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

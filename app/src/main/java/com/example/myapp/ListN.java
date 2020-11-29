@@ -27,7 +27,10 @@ public class ListN extends AppCompatActivity {
     DatabaseReference databaseRef;
     List<com.example.myapp.Listdata> list1 = new ArrayList<>();
     Context context;
+    FloatingActionButton back;
     private FirebaseAuth fAuth;
+    private Intent intent;
+
 
     String email;
 
@@ -35,12 +38,20 @@ public class ListN extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.nlist);
 
         fAuth = FirebaseAuth.getInstance();
 
 
         email = fAuth.getCurrentUser().getEmail();
-        setContentView(R.layout.nlist);
+        back=findViewById(R.id.nback);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent = new Intent(com.example.myapp.ListN.this, com.example.myapp.dashboard.class));
+            }
+        });
+
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(com.example.myapp.ListN.this);

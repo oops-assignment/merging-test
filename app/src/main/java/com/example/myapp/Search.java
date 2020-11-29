@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +37,8 @@ public class Search extends AppCompatActivity implements com.example.myapp.Searc
     private com.example.myapp.SearchAdapter SearchAdapter;
     private  String Search;
     private  String catname;
+    private FirebaseAuth fAuth;
+    String email;
 
 
     private void setUI(){
@@ -43,8 +46,12 @@ public class Search extends AppCompatActivity implements com.example.myapp.Searc
         searchbtn1 = findViewById(R.id.searchbtn1);
 
         btnback = findViewById(R.id.backbtn);
+        fAuth = FirebaseAuth.getInstance();
 
-        databaseReference = firebaseDatabase.getInstance().getReference().child("User").child(""+catname).child("items");
+
+        email = fAuth.getCurrentUser().getEmail();
+
+        databaseReference = firebaseDatabase.getInstance().getReference().child(email.substring(0,2)).child("inventory").child(""+catname).child("items");
         valueEventListener = new ValueEventListener() {
 
 

@@ -28,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 
 public class ListR extends AppCompatActivity {
-    public FloatingActionButton floatingActionButton1;
+    public FloatingActionButton floatingActionButton1,btnback;
     FirebaseDatabase database;
     DatabaseReference ref;
     RecyclerView recyclerView;
@@ -48,6 +48,14 @@ public class ListR extends AppCompatActivity {
 
 
         floatingActionButton1=findViewById(R.id.floatingActionButton3);
+        btnback=findViewById(R.id.rback);
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(com.example.myapp.ListR.this, dashboard.class);
+                startActivity(intent);
+            }
+        });
 
         recyclerView=findViewById(R.id.rvf);
         recyclerView.setHasFixedSize(true);
@@ -70,6 +78,8 @@ public class ListR extends AppCompatActivity {
     }
 
     protected void onStart() {
+
+
 
         super.onStart();
         FirebaseRecyclerOptions<Reminder_data> options=

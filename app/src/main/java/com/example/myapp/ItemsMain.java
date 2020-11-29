@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,6 +39,8 @@ public class ItemsMain extends AppCompatActivity implements RecyclerViewAdapter.
     private DatabaseReference databaseReference;
     private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerViewAdapter;
+    private FirebaseAuth fAuth;
+    String email;
 
 
     private ArrayList<String> itemsname = new ArrayList<String>();
@@ -208,9 +211,13 @@ public class ItemsMain extends AppCompatActivity implements RecyclerViewAdapter.
 
         Intent intent1 = getIntent();
         catname=intent1.getStringExtra("catname");
+        fAuth = FirebaseAuth.getInstance();
 
 
-        databaseReference = database.getInstance().getReference().child("User").child(""+catname).child("items");
+        email = fAuth.getCurrentUser().getEmail();
+
+
+        databaseReference = database.getInstance().getReference().child(email.substring(0,2)).child("inventory").child(""+catname).child("items");
         setUI();
         initRecyclerView();
         firebaseinfo();
